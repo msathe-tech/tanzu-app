@@ -4,8 +4,8 @@
 
 clear
 
-CICD_CLUSTER=cicd-cluster
-TARGET_CLUSTER=dev-cluster
+CICD_CLUSTER=manteca-cicd
+TARGET_CLUSTER=manteca-apps
 
 pe "kubectx ${CICD_CLUSTER}"
 

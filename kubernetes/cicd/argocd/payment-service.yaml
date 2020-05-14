@@ -6,10 +6,10 @@ metadata:
 spec:
   destination:
     namespace: default
-    server: 'https://dev.beijing.cf-app.com:8443'
+    server: 'https://apps-cluster.manteca.cf-app.com:8443'
   source:
     path: 'payment-service'
-    repoURL: 'https://github.com/Turbots/tanzu-demo-argocd'
+    repoURL: 'https://github.com/msathe-tech/tanzu-app-gitops'
     targetRevision: master
   project: default
   syncPolicy:

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-CICD_CLUSTER=cicd-cluster
-TARGET_CLUSTER=dev-cluster
+CICD_CLUSTER=manteca-cicd
+TARGET_CLUSTER=manteca-apps
 echo 'Setting up ArgoCD with CICD_CLUSTER ['${CICD_CLUSTER}'] and TARGET_CLUSTER ['${TARGET_CLUSTER}']'
 
 kubectx ${CICD_CLUSTER}
@@ -27,7 +27,7 @@ kubectx ${TARGET_CLUSTER}
 argocd cluster add `kubectx -c`
 
 echo 'Setting up Wavefront token...'
-kubectl -n default apply -f wavefront-token.yaml
+kubectl -n default apply -f ../../metrics/wavefront-token.yaml
 
 echo 'Switching back to CI/CD cluster'
 kubectx ${CICD_CLUSTER}
