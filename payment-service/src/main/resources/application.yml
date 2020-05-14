@@ -1,0 +1,48 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      wavefront:
+        source: payments
+spring:
+  application:
+    name: payments
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: LAZY
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      id:
+        new_generator_mappings: false
+  cloud:
+    stream:
+      bindings:
+        confirmations:
+          group: 'payments'
+          consumer:
+            prefetch: 100
+  flyway:
+    baseline-on-migrate: true
+  datasource:
+    hikari:
+      jdbc-url: 'jdbc:h2:mem:paymentdb'
+  zipkin:
+    discovery-client-enabled: false
+    service:
+      name: payments
+    sender:
+      type: web
+tanzu:
+  payment:
+    rate: 2
+wavefront:
+  application:
+    name: tanzu-demo

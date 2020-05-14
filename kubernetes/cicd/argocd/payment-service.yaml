@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: argocd
+  name: payment-service
+spec:
+  destination:
+    namespace: default
+    server: 'https://dev.beijing.cf-app.com:8443'
+  source:
+    path: 'payment-service'
+    repoURL: 'https://github.com/Turbots/tanzu-demo-argocd'
+    targetRevision: master
+  project: default
+  syncPolicy:
+    automated:
+      automated:
+        prune: false
+        selfHeal: false
+      prune: true
+      selfHeal: true
